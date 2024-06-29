@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "tsrun": "tsc",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -40,6 +41,6 @@
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.3",
     "prettier": "^3.2.5",
-    "typescript": "^5"
+    "typescript": "^5.5.2"
   }
 }
