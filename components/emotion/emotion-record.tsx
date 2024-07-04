@@ -19,6 +19,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { v4 as uuidv4 } from "uuid";
 import Input from "../input/input";
 import { useModal } from "@/hooks/useModal";
+import { RecordType } from "@/types/types";
 
 const EmotionRecord = (): JSX.Element => {
   const setAddMode = useSetRecoilState(addModeState);

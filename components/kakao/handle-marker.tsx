@@ -11,6 +11,9 @@ import {
 import { MapMarker, useMap } from "react-kakao-maps-sdk";
 import { useSetRecoilState } from "recoil";
 
+// 타입 import
+import { Latlng } from "@/types/types";
+
 const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
 const windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
 

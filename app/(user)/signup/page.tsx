@@ -1,9 +1,8 @@
 "use client";
 
-import { useForm, SubmitHandler } from "react-hook-form";
 import { supabase } from "@/libs/supabase";
+import { SubmitHandler, useForm } from "react-hook-form";
 import "./signup.scss";
-import Button from "@/components/button/button";
 
 interface SignUpFormInputs {
   email: string;

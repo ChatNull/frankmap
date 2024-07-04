@@ -1,7 +1,7 @@
 "use client";
 import { heightState, isActBottomSheetState, transformState } from "@/atoms/atoms";
 import "@/components/bottom-sheet/bottom-sheet.scss";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useRecoilState } from "recoil";
 
 interface BottomSheetMetrics {
@@ -15,7 +15,7 @@ interface BottomSheetMetrics {
   };
   isContentAreaTouched: boolean;
 }
-const windowHeight = typeof window !== "undefined" ? window.innerHeight : undefined;
+const windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
 
 const BottomSheet = ({ children }: { children: React.ReactNode }) => {
   const [isAct, setIsAct] = useRecoilState(isActBottomSheetState);

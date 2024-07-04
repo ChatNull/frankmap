@@ -7,10 +7,11 @@ import "@/components/list/emotion-item.scss";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/libs/supabase";
 import { useModal } from "@/hooks/useModal";
+import { RecordType } from "@/types/types";
 
 interface EmotionItemProps {
   record: RecordType;
-  fetchRecords: () => Promise<void>; // 타입 정의 추가
+  fetchRecords: () => Promise<void>;
 }
 
 const ListItem: React.FC<EmotionItemProps> = ({ record, fetchRecords }) => {

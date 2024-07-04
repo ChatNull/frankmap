@@ -1,13 +1,12 @@
 "use client";
 
-import { useForm, SubmitHandler } from "react-hook-form";
-import { supabase } from "@/libs/supabase";
 import { userState } from "@/atoms/userstate";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { supabase } from "@/libs/supabase";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import "./login.scss"
-import Button from "@/components/button/button";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import "./login.scss";
 
 interface LoginFormInputs {
   email: string;
@@ -81,7 +80,7 @@ export default function Login() {
 
   if (isLoggedIn) {
     return (
-<div className="login-container">
+      <div className="login-container">
         <p>이미 로그인된 상태입니다.</p>
         <button onClick={() => router.replace("/")}>메인 페이지로 이동</button>
         <button onClick={handleLogout}>로그아웃</button>
@@ -117,8 +116,10 @@ export default function Login() {
           />
           {errors.password && <p className="error-message">{errors.password.message}</p>}
         </div>
-        <button type="submit" className="submit-button">로그인</button>
+        <button type="submit" className="submit-button">
+          로그인
+        </button>
       </form>
     </div>
-  ); 
+  );
 }

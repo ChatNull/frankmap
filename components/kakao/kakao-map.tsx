@@ -8,6 +8,7 @@ import { FilteredData, dataState, emotionAddMarker, isActBottomSheetState, locat
 import GetGeolocation from "./get-geolocation";
 import { useModal } from "@/hooks/useModal";
 import GetUser from "./get-user";
+import { Latlng, RecordType } from "@/types/types";
 
 function debounce<T extends (...args: any[]) => void>(callback: T, limit = 500): (...args: Parameters<T>) => void {
   let timeout: ReturnType<typeof setTimeout>;
