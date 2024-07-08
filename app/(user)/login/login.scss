@@ -8,6 +8,11 @@
   padding: 20px;
   box-sizing: border-box;
 
+  width: calc(100% + calc(var(--layout-padding) * 2));
+  transform: translateX(-50%);
+  left: 50%;
+  position: relative;
+
   h1 {
     font-size: 2em;
     margin-bottom: 20px;
@@ -42,7 +47,6 @@
         margin-top: 5px;
       }
     }
-
     .submit-button {
       width: 100%;
       padding: 10px;
@@ -53,6 +57,8 @@
       color: #fff;
       cursor: pointer;
       transition: background-color 0.3s;
+      display: block;
+      box-sizing: border-box;
 
       &:hover {
         background-color: black;

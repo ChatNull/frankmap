@@ -27,7 +27,7 @@ export default function Login() {
   } = useForm<LoginFormInputs>();
 
   useEffect(() => {
-    console.log("유저정보 변경됐누:", getUser);
+    console.log("유저정보 변경:", getUser);
   }, [getUser]);
 
   useEffect(() => {

@@ -40,16 +40,16 @@ const Header = () => {
       {/* 홈, 캘린더, 감정기록, 프로필 묶기 - pc용 mobile용 따로 css 주기, pc버전에서는 프로필 hidden처리
       mobile에서만 보이는 로고,프로필 - pc에서는 숨기기 */}
       <header className="header_PC">
-        <div className="home_PC">
-          <Link href={"/"}>
-            <img src={pathname === "/" ? "/home_black.svg" : "/home_gray.svg"} alt="홈" />
-            <h1>홈</h1>
-          </Link>
-        </div>
         <div className="calendar_PC">
           <Link href={"/calendar"}>
             <img src={pathname === "/calendar" ? "/calendar_black.svg" : "/calendar_gray.svg"} alt="캘린더" />
             <h1>캘린더</h1>
+          </Link>
+        </div>
+        <div className="home_PC">
+          <Link href={"/"}>
+            <img src={pathname === "/" ? "/home_black.svg" : "/home_gray.svg"} alt="홈" />
+            <h1>홈</h1>
           </Link>
         </div>
         <div className="emotion_PC">
