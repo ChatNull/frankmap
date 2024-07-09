@@ -35,6 +35,10 @@ const Header = () => {
     emoticon: "😊",
   };
 
+  const homeMOImage = pathname === "/" ? "" : "icon-arrow.svg";
+
+  const homeMoStyle = pathname === "/" ? { display: "none" } : { width: "3rem", height: "3rem" };
+
   return (
     <>
       {/* 홈, 캘린더, 감정기록, 프로필 묶기 - pc용 mobile용 따로 css 주기, pc버전에서는 프로필 hidden처리
@@ -66,7 +70,7 @@ const Header = () => {
       <header className="header_MO">
         <div className="home_MO">
           <Link href={"/"}>
-            <img src="emotion1-folded.svg" alt="홈" />
+            <img src={homeMOImage} style={homeMoStyle} alt="홈" />
           </Link>
         </div>
 
