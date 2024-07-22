@@ -67,14 +67,14 @@ const BottomSheet = ({ children }: { children: React.ReactNode }) => {
       if (touchMove.prevTouchY > currentTouch.clientY) touchMove.movingDirection = "up";
 
       if (canUserMoveBottomSheet()) {
+        e.preventDefault();
+        const touchOffset = currentTouch.clientY - touchStart.touchY;
+        let nextSheetY = touchStart.sheetY + touchOffset;
+        if (nextSheetY <= MIN_Y) nextSheetY = MIN_Y;
+        if (nextSheetY >= MAX_Y) nextSheetY = MAX_Y;
+        setBottomSheetStyle({ transform: nextSheetY - MAX_Y, height });
         if (height < content.current!.clientHeight) {
-          e.preventDefault();
-          const touchOffset = currentTouch.clientY - touchStart.touchY;
-          let nextSheetY = touchStart.sheetY + touchOffset;
-          if (nextSheetY <= MIN_Y) nextSheetY = MIN_Y;
-          if (nextSheetY >= MAX_Y) nextSheetY = MAX_Y;
-          setBottomSheetStyle({ transform: nextSheetY - MAX_Y, height });
-          setIsAct(true);
+          // setIsAct(true);
         }
       }
     };
@@ -86,14 +86,14 @@ const BottomSheet = ({ children }: { children: React.ReactNode }) => {
       if (currentSheetY !== MIN_Y) {
         if (!sheet.current!.scrollTop && touchMove.movingDirection === "down") {
           setBottomSheetStyle({ transform: 0, height });
-          setIsAct(false);
+          // setIsAct(false);
         }
         if (touchMove.movingDirection === "up") {
           setBottomSheetStyle({
             transform: Math.max(-height, -windowHeight * 0.8) + docHeight,
             height: Math.min(height, windowHeight * 0.8),
           });
-          setIsAct(true);
+          // setIsAct(true);
         }
       }
 
