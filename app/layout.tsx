@@ -15,10 +15,22 @@ const noto_Sans_KR = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: "솔직할지도",
-  description: "지역 기반 감정 일기 by next",
+  title: { template: `%s | 솔직할지도`, default: "솔직할지도" },
+  description: "지역 기반 감정 일기. 오늘의 감정을 귀여운 이모티콘과 함께 기록하세요.",
+  authors: {
+    name: "ChatNull",
+  },
   icons: {
-    icon: "/emotion1.svg",
+    icon: "/favicon.svg",
+  },
+  keywords: `감정, 일기, 회고, 감정 일기, 카카오맵, 위치 기반 일기, 일기 앱, next.js`,
+  openGraph: {
+    title: "솔직할지도",
+    description: "지역 기반 감정 일기. 오늘의 감정을 귀여운 이모티콘과 함께 기록하세요.",
+    images: "/opengraph_img.png",
+    url: "https://frankmap.netlify.app/",
+    type: "website",
+    siteName: "솔직할지도",
   },
 };
 
