@@ -1,7 +1,7 @@
 "use client";
 import { useModal } from "@/hooks/useModal";
 import { Latlng, RecordType } from "@/types/types";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { CustomOverlayMap, Map } from "react-kakao-maps-sdk";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { FilteredData, dataState, emotionAddMarker, isActBottomSheetState, locationState } from "../../atoms/atoms";
@@ -9,14 +9,7 @@ import useKakaoLoader from "../../hooks/useKakaoLoader";
 import GetGeolocation from "./get-geolocation";
 import GetUser from "./get-user";
 import EventMarkerContainer from "./handle-marker";
-
-function debounce<T extends (...args: any[]) => void>(callback: T, limit = 500): (...args: Parameters<T>) => void {
-  let timeout: ReturnType<typeof setTimeout>;
-  return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => callback.apply(this, args), limit);
-  };
-}
+import { debounce } from "./debounce";
 
 const KakaoMap = ({
   search,
@@ -39,16 +32,21 @@ const KakaoMap = ({
   const { openModal } = useModal();
   const [searchedData, setSearchedData] = useState<{ content: string; latlng: Latlng }[]>([]);
 
+  const handleBounds = useCallback((bounds: kakao.maps.LatLngBounds) => {
+    setBounds({
+      sw: bounds.getSouthWest().toString(),
+      ne: bounds.getNorthEast().toString(),
+    });
+  }, []);
+  const debouncedHandleBounds = useCallback(debounce(handleBounds), [handleBounds]);
+
   const filterDataFn = () => {
     // bounds가 변경되면 해당 bounds에 해당하는 데이터만 필터링
     if (bounds?.sw && bounds?.ne) {
       const swLatLng = bounds.sw.slice(1, -1).split(", ").map(Number);
       const neLatLng = bounds.ne.slice(1, -1).split(", ").map(Number);
-
-      const swLat = swLatLng[0];
-      const swLng = swLatLng[1];
-      const neLat = neLatLng[0];
-      const neLng = neLatLng[1];
+      const [swLat, swLng] = swLatLng;
+      const [neLat, neLng] = neLatLng;
 
       const newFilteredData = data!.filter((marker) => {
         const lat = marker.latlng.lat;
@@ -113,7 +111,6 @@ const KakaoMap = ({
 
   // 위치에 따른 filteredData 변경
   useEffect(() => {
-    // debounce(() => filterDataFn(), 500);
     filterDataFn();
   }, [bounds, data, position]);
 
@@ -137,14 +134,11 @@ const KakaoMap = ({
             key={`kakaoMap`}
             center={{ lat: position.lat, lng: position.lng }}
             style={{ width: "100%", height: "100vh" }}
-            ref={mapRef}
+            // ref={mapRef}
             onCreate={(map) => setMap(map)}
             onBoundsChanged={(map) => {
               const bounds = map.getBounds();
-              setBounds({
-                sw: bounds.getSouthWest().toString(),
-                ne: bounds.getNorthEast().toString(),
-              });
+              debouncedHandleBounds(bounds);
             }}
             onDragEnd={(map) => {
               // @ts-ignore
