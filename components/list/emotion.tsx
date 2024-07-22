@@ -11,11 +11,18 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import "@/components/list/emotion.scss";
 import { RecordType } from "@/types/types";
 
+const getCurrentMonth = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  return `${year}-${month}`;
+};
+
 const Emotion = () => {
   const user = useRecoilValue(userState);
   const [records, setRecords] = useState<RecordType[]>();
   const [filteredRecords, setFilteredRecords] = useState<RecordType[]>();
-  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth());
   const setEditState = useSetRecoilState(editStepState);
 
   useEffect(() => {
@@ -41,6 +48,9 @@ const Emotion = () => {
         .eq("user_id", user)
         .order("date", { ascending: true })
         .order("created_at", { ascending: true });
+
+      const currentMonth = getCurrentMonth();
+      const filtered = record?.filter((rec: RecordType) => rec.date.startsWith(currentMonth));
 
       setRecords(record as RecordType[]);
     } catch (error) {
