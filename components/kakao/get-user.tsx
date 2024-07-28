@@ -8,18 +8,18 @@ import { useEffect } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 const GetUser = () => {
-  const loggedInUserId = useRecoilValue(userState);
+  const loggedInUser = useRecoilValue(userState);
   const setData = useSetRecoilState(dataState);
   const { openModal } = useModal();
   const router = useRouter();
 
-  console.log(loggedInUserId);
+  console.log(loggedInUser);
 
   useEffect(() => {
     const getData = async () => {
-      if (loggedInUserId) {
+      if (loggedInUser) {
         try {
-          const resultData = await fetchData(loggedInUserId.id);
+          const resultData = await fetchData(loggedInUser.id);
           setData(resultData); // 부모 컴포넌트에 데이터 전달
         } catch (error) {
           console.error("데이터 가져오기 오류:", error);
@@ -41,7 +41,7 @@ const GetUser = () => {
       }
     };
     getData();
-  }, [loggedInUserId]);
+  }, [loggedInUser]);
 
   return null;
 };

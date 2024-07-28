@@ -20,16 +20,16 @@ interface EmotionData {
 const Calendar = () => {
   /* -------------------- Data fetching -------------------- */
   const [data, setData] = useState<EmotionData[]>([]); // Supabase로부터 가져온 데이터를 저장할 상태
-  const loggedInUserId = useRecoilValue(userState);
+  const loggedInUser = useRecoilValue(userState);
 
   const router = useRouter();
 
   useEffect(() => {
     const getData = async () => {
-      if (loggedInUserId) {
-        // console.log("로그인된 uuid :", loggedInUserId);
+      if (loggedInUser) {
+        // console.log("로그인된 uuid :", loggedInUser);
         try {
-          const resultData = await fetchData(loggedInUserId.id);
+          const resultData = await fetchData(loggedInUser.id);
           setData(resultData);
         } catch (error) {
           console.error("데이터 가져오기 오류:", error);
@@ -43,7 +43,7 @@ const Calendar = () => {
     };
 
     getData();
-  }, [loggedInUserId, router]);
+  }, [loggedInUser, router]);
 
   /* ----------------- calendar ----------------- */
   const [selectedDate, setSelectedDate] = useState<Date>(new Date()); /** 현재 날짜를 가져오는 state */
