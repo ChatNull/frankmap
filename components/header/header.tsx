@@ -64,19 +64,19 @@ const Header = () => {
           <div className="calendar_PC">
             <Link href={"/calendar"}>
               <img src={pathname === "/calendar" ? "/calendar_black.svg" : "/calendar_gray.svg"} alt="캘린더" />
-              <h2>캘린더</h2>
+              <h2 className="hidden">캘린더</h2>
             </Link>
           </div>
           <div className="home_PC">
             <Link href={"/"}>
               <img src={pathname === "/" ? "/home_black.svg" : "/home_gray.svg"} alt="홈" />
-              <h2>홈</h2>
+              <h2 className="hidden">홈</h2>
             </Link>
           </div>
           <div className="emotion_PC">
             <Link href={"/emotion"}>
               <img src={pathname === "/emotion" ? "/emotion_black.svg" : "/emotion_gray.svg"} alt="감정기록" />
-              <h2>감정기록</h2>
+              <h2 className="hidden">감정기록</h2>
             </Link>
           </div>
           <button className="profile_PC">
