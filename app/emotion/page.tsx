@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 const EmotionPage = () => {
   return (
     <div>
+      <h1 className="hidden">감정 기록 확인하기</h1>
       <Emotion />
     </div>
   );

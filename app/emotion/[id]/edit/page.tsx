@@ -19,6 +19,7 @@ export function generateMetadata({ params }: { params: { id: number } }): Metada
 const EmotionEdit = ({ params: { id } }: { params: { id: number } }): JSX.Element => {
   return (
     <>
+      <h1 className="hidden">감정 기록 수정하기</h1>
       <EmotionEditCont id={id} />
     </>
   );
