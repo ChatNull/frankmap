@@ -147,7 +147,9 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <h1>로그인</h1>
+      <h1>
+        로그인 <span className="hidden">하기</span>
+      </h1>
       <form onSubmit={handleSubmit(handleLogin)} className="login-form">
         <div className="form-group">
           <Input

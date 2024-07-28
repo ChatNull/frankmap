@@ -89,7 +89,9 @@ export default function SignUp() {
 
   return (
     <div className="signup-container">
-      <h1>회원가입</h1>
+      <h1>
+        회원가입 <span className="hidden">하기</span>
+      </h1>
       <form onSubmit={handleSubmit(handleSignUp)} className="signup-form">
         <div className="form-group">
           <Input
