@@ -31,14 +31,14 @@
 }
 
 /* 모바일 */
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .containerLayout {
     padding: 0 var(--layout-padding) 12rem var(--layout-padding);
   }
 }
 
 /* PC */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .containerLayout {
     padding: 6rem var(--layout-padding) 0 var(--layout-padding);
   }
