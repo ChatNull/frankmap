@@ -1,17 +1,26 @@
-// Header.tsx
-
 "use client";
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useModal } from "@/hooks/useModal";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { userState } from "@/atoms/userstate"; // Recoil 상태 import
+import { supabase } from "@/libs/supabase";
 import "./header.scss";
 
 const Header = () => {
   const pathname = usePathname();
   const [isPC, setIsPC] = useState<boolean>(false);
   const { openModal } = useModal();
+  const user = useRecoilValue(userState); // 유저 상태 가져오기
+  const router = useRouter();
+
+  //로컬에 있는 유저 정보를
+  //핸들 로그아웃 만들어서
+  //로컬에 있는거 날아가게 하기
+
+  console.log("xxxxx", user);
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,21 +33,32 @@ const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // 모달에 전달할 데이터 예시
+  // 모달에 전달할 데이터
+
   const modalData = {
     title: "회원정보",
-    content: "<p>여기에 회원정보를 입력하세요.</p>",
-    button: "확인",
+    content: user
+      ? `<p>닉네임: ${user.nickname || "알 수 없음"}</p><p>이메일: ${user.email}</p>`
+      : `<img className="emotion" src="/emotion4.svg" alt="로그아웃" />
+      <p>회원정보를 찾을 수 없어요</p>
+      `,
+    button: user ? "로그아웃" : "로그인",
     callBack: () => {
-      console.log("모달 확인 버튼 클릭");
+      if (user) {
+        console.log("모달 확인 버튼 클릭");
+        window.localStorage.clear();
+        supabase.auth.signOut();
+        window.location.reload();
+      } else {
+        router.push("/login");
+      }
     },
     emoticon: "😊",
   };
+  console.log(user);
 
   return (
     <>
-      {/* 홈, 캘린더, 감정기록, 프로필 묶기 - pc용 mobile용 따로 css 주기, pc버전에서는 프로필 hidden처리
-      mobile에서만 보이는 로고,프로필 - pc에서는 숨기기 */}
       <header className="header">
         <div className="header_PC">
           <div className="calendar_PC">
@@ -63,7 +83,6 @@ const Header = () => {
             <img src="icon-user.svg" onClick={() => openModal(modalData)} alt="프로필" />
           </button>
         </div>
-        {/* ------------모바일에만 보이는 header / 로고 이미지 & 유저 프로필 / pc버전에서 사라져야함--------------- */}
         <div className="header_MO">
           <div className="home_MO">
             <Link href={"/"}>
