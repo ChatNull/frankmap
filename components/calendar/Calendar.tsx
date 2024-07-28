@@ -29,7 +29,7 @@ const Calendar = () => {
       if (loggedInUserId) {
         // console.log("로그인된 uuid :", loggedInUserId);
         try {
-          const resultData = await fetchData(loggedInUserId);
+          const resultData = await fetchData(loggedInUserId.id);
           setData(resultData);
         } catch (error) {
           console.error("데이터 가져오기 오류:", error);

@@ -13,11 +13,13 @@ const GetUser = () => {
   const { openModal } = useModal();
   const router = useRouter();
 
+  console.log(loggedInUserId);
+
   useEffect(() => {
     const getData = async () => {
       if (loggedInUserId) {
         try {
-          const resultData = await fetchData(loggedInUserId);
+          const resultData = await fetchData(loggedInUserId.id);
           setData(resultData); // 부모 컴포넌트에 데이터 전달
         } catch (error) {
           console.error("데이터 가져오기 오류:", error);
