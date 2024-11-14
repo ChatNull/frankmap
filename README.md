@@ -3,7 +3,9 @@
 
 ### 지도 위에 써 내려가는 감정 일기, 솔직할지도
 
-_[ 대표 이미지 삽입 ]_
+<img src="https://github.com/user-attachments/assets/1ec7c18e-d6f0-492d-af58-229f843fab4e"/>
+
+#### 
 
 여러분의 감정을 기록하고 싶었던 적이 있으신가요? 하루하루 스쳐가는 다양한 감정을 기억하고, 되돌아보며 나를 이해하는 시간을 가져보는 건 어떨까요?
 
@@ -129,7 +131,13 @@ PW: qlqjs123
 
 <h4><img align="center" src="https://github.com/ChatNull/frankmap/assets/84115816/66b6c2d5-d212-4b30-9ee3-06b17bd5339c" width="35" height="35" /> 이소정</h4>
 
-<br />
+- 메인 페이지
+  - 카카오맵 커스텀 및 검색 기능 구현
+  - 현재 보이는 맵에 위치한 데이터만 호출
+  - 맵 위치 이동시 Debounce 함수를 활용한 과도한 네트워크 요청 방지
+- 바텀 시트
+  - 터치 및 클릭 이벤트를 구분하여 다양한 디바이스에서 최적화되도록 구현
+  - 콘텐츠의 높이에 맞춰 바텀 시트의 높이가 동적으로 조절되도록 구현
 
 <h4><img align="center" src="https://github.com/ChatNull/frankmap/assets/84115816/66b6c2d5-d212-4b30-9ee3-06b17bd5339c" width="35" height="35" /> 전희선</h4>
 
@@ -159,26 +167,3 @@ PW: qlqjs123
   <br />
 - supabase - user, record table 설계 - auth table ⇒ user table 연동 - record table ⇒ user table 참조 연동 - 이미지 저장 스토리지 생성
   <br />
-
----
-
-### 주요 기능
-
-#### 지도에 감정표시
-
-_[ 설명 ]_
-<br />
-
-#### 감정 캘린더
-
-_[ 설명 ]_
-<br />
-
-#### 감정 통계
-
-_[ 설명 ]_
-<br />
-
----
-
-### 트러블 슈팅
